@@ -1,11 +1,22 @@
 import {useContext} from "react";
-// import {ProductsContext} from "./ProductsContext";
 
-export default function Product({_id, name, price, description, image}) {
-  // const {setSelectedProducts} = useContext(ProductsContext);
+interface IProduct {
+  _id: string;
+  name: string;
+  price: number;
+  description: string;
+  image: string[];
+}
+
+const Product = ({
+  _id, 
+  name, 
+  price, 
+  description, 
+  image
+}: IProduct) => {
   function addProduct() {
     console.log("add product")
-    // setSelectedProducts(prev => [...prev,_id]);
   }
 
   return (
@@ -25,3 +36,5 @@ export default function Product({_id, name, price, description, image}) {
     </div>
   );
 }
+
+export default Product;
