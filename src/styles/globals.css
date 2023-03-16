@@ -7,3 +7,32 @@ html {
   scroll-behavior: smooth !important;
 }
 
+/* #f5f5f5 bg color */
+/* #f68b1e primary color */
+/* #311a02 dark color */
+
+@layer base {
+  body {
+    @apply bg-[#f5f5f5] text-[#1f2937] tracking-wide
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-[#311a02]
+  }
+
+  h1 {
+    @apply text-2xl sm:text-5xl md:text-6xl
+  }
+
+  h2 {
+    @apply text-xl sm:text-4xl
+  }
+
+  li {
+    @apply cursor-pointer
+  }
+
+  button {
+    @apply w-full rounded-xl uppercase bg-[#f68b1e] text-white
+  }
+}

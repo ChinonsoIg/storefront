@@ -69,11 +69,12 @@ export default function ({ products, categories }: IHome) {
         {categories.categories.map(category => (
           <div key={category._id}>
             {products.products.find(p => p.categoryId === category._id) && (
-              <div>
+              <div className="mb-5">
                 <h2 className="text-2xl py-5 capitalize">{category.categoryName}</h2>
-                <div className="flex -mx-5 overflow-x-scroll snap-x scrollbar-hide">
-                  {products.products.filter(p => p.categoryId === category._id).map(productInfo => (
-                    <div key={productInfo._id} className="px-5 snap-start">
+                <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
+                >
+                  {products.products.filter(product => product.categoryId === category._id).map(productInfo => (
+                    <div key={productInfo._id}>
                       <Product {...productInfo} />
                     </div>
                   ))}

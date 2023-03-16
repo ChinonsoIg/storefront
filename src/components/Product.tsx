@@ -1,4 +1,7 @@
-import {useContext} from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { addComma } from "utils/functions";
 
 interface IProduct {
   _id: string;
@@ -9,30 +12,36 @@ interface IProduct {
 }
 
 const Product = ({
-  _id, 
-  name, 
-  price, 
-  description, 
+  _id: productId,
+  name,
+  price,
+  description,
   image
 }: IProduct) => {
+  const router = useRouter();
+  // console.log("pr : ", router)
+
   function addProduct() {
     console.log("add product")
   }
 
   return (
-    <div className="w-52">
-      <div className="bg-blue-100 p-5 rounded-xl">
-        <img src={image[0]} alt=""/>
-      </div>
-      <div className="mt-2">
-        <h3 className="font-bold text-lg">{name}</h3>
-      </div>
-      <p className="text-sm mt-1 leading-4 text-gray-500">{description}</p>
-      <div className="flex mt-1">
-        <div className="text-2xl font-bold grow">₦{price}</div>
-        <button
-          onClick={addProduct} className="bg-emerald-400 text-white py-1 px-3 rounded-xl">+</button>
-      </div>
+    <div className="w-full p-2 bg-white rounded-md shadow-none hover:shadow-xl">
+      <Link href={`/${productId}`}>
+        <div className="bg-white flex align-center justify-center">
+          <img src={image[0]} alt={name} />
+        </div>
+        <div className="mt-2">
+          <h3 className="font-normal text-lg">{name}</h3>
+        </div>
+        <div className="flex gap-3 text-xl font-medium my-2">
+          <p>₦{addComma(price)}</p>
+          <p className="line-through text-[#aaa9a9]">₦{addComma(price)}</p>
+        </div>
+        <p className="text-sm mt-1 leading-4 text-gray-500">{"TODO: Rate"}</p>
+      </Link>
+      <button
+        onClick={addProduct} className="mt-4 py-1 px-3 rounded-md">Add to Cart</button>
     </div>
   );
 }
