@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { Alex_Brush } from "@next/font/google";
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { MdKeyboardArrowDown, MdPersonOutline, MdOutlineShoppingCart } from "react-icons/md";
+import { MdKeyboardArrowDown, MdPersonOutline, MdOutlineShoppingCart, MdSearch } from "react-icons/md";
 
 const alex_brush = Alex_Brush({
   weight: "400",
@@ -55,8 +55,8 @@ const Navbar = ({ searchTerm, setSearchTerm }: ISearch) => {
       style={{ backgroundColor: `${navBg}` }}
       className={
         shadow
-          ? "sticky top-0 w-full h-20 shadow-xl z-[100] flex justify-center items-center"
-          : "sticky top-0 w-full h-20 z-[100] flex justify-center items-center text-[#fffefd]"
+          ? "sticky top-0 w-full h-12 lg:h-20 shadow-xl z-[100] flex justify-center items-center"
+          : "sticky top-0 w-full h-12 lg:h-20 z-[100] flex justify-center items-center text-[#fffefd]"
       }
     >
       <div className="flex justify-between items-center w-full max-w-[1240px] h-full px-5 text-[#311a02] font-semibold">
@@ -65,24 +65,34 @@ const Navbar = ({ searchTerm, setSearchTerm }: ISearch) => {
           FemaleSuave
         </Link>
 
-        <div className="w-auto flex justify-around items-center gap-10 ml-20">
-          <form className="flex justify-between items-center gap-3">
+        <div className="w-auto flex justify-around items-center gap-4 lg:gap-5 ml-20">
+          <div className="block lg:hidden">
+            <MdSearch size={20} color="#311a02" />
+          </div>
+
+          <form className="hidden lg:flex justify-between items-center gap-2">
             <input value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} type="text" placeholder="Search for products..." className="bg-gray-200 lg:w-[500px] xl:w-[600px] py-2 px-4 rounded-sm text-gray-500 font-normal border-none focus:border-1 border-orange-600" />
-            <button className="w-max h-full p-2 rounded-sm shadow-lg">Search</button>
+            <button className="w-max h-full p-2 rounded-sm shadow-lg font-normal">Search</button>
           </form>
-          
-          <ul className="hidden md:flex gap-5">
+
+          <ul className="hidden md:flex gap-5 items-center">
             <li className="text-bold uppercase hover:text-[#f68b1e]">
-              <div className="flex justify-around items-center gap-1 bg-gray-200 py-2 px-4 rounded-sm">
+              <div className="hidden lg:flex justify-around items-center gap-1 bg-gray-200 py-2 px-4 rounded-sm">
                 <MdPersonOutline />
                 <p>Account</p>
                 <MdKeyboardArrowDown />
               </div>
+              <div className="block lg:hidden">
+              <MdPersonOutline size={20} />
+              </div>
             </li>
             <li className="text-bold uppercase hover:text-[#f68b1e]">
-              <div className="flex justify-around items-center gap-1 py-2 rounded-sm">
+              <div className="hidden lg:flex justify-around items-center gap-1 py-2 rounded-sm">
                 <MdOutlineShoppingCart />
                 <p>Cart</p>
+              </div>
+              <div className="block lg:hidden">
+              <MdOutlineShoppingCart size={20} />
               </div>
             </li>
           </ul>
