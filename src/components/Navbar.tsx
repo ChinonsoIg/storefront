@@ -5,28 +5,22 @@ import { Alex_Brush } from "@next/font/google";
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { MdKeyboardArrowDown, MdPersonOutline, MdOutlineShoppingCart } from "react-icons/md";
-// import { navItems, socials } from "../utils/Functions";
 
 const alex_brush = Alex_Brush({
   weight: "400",
   subsets: ["latin"],
 });
 
-export const navItems = [
-  { name: "home", url: "/", id: "1" },
-  { name: "about", url: "/about", id: "2" },
-  { name: "skills", url: "/skills", id: "3" },
-  { name: "projects", url: "/projects", id: "4" },
-  { name: "contact", url: "/contact", id: "5" },
-];
+interface ISearch {
+  searchTerm: string;
+  setSearchTerm: (search: string) => void;
+}
 
 
-const Navbar = () => {
+const Navbar = ({ searchTerm, setSearchTerm }: ISearch) => {
   const [nav, setNav] = useState(false);
   const [shadow, setShadow] = useState(false);
   const [navBg, setNavBg] = useState("#fffefd");
-  // const [linkColor, setLinkColor] = useState("#311a02");
-  const [logoColor, setLogoColor] = useState("#311a02");
 
   const router = useRouter();
 
@@ -37,12 +31,8 @@ const Navbar = () => {
   useEffect(() => {
     if (shadow) {
       setNavBg("#fffefd");
-      // setLinkColor("#001a1a");
-      // setLogoColor("#008080")
     } else {
       setNavBg("transparent");
-      // setLinkColor("#f8f8f8");
-      // setLogoColor("#f8f8f8");
     }
   }, [router, shadow]);
 
@@ -71,25 +61,30 @@ const Navbar = () => {
     >
       <div className="flex justify-between items-center w-full max-w-[1240px] h-full px-5 text-[#311a02] font-semibold">
         <Link href="/" className={`${alex_brush.className} text-xl font-bold hover:text-[#f68b1e]`}
-          // style={{ color: logoColor }} 
           aria-label="Go to home page">
           FemaleSuave
         </Link>
-        <div>
-          <ul className="hidden md:flex">
-              <li className="text-bold uppercase hover:text-[#f68b1e]">
-                <div className="flex justify-around items-center gap-1 bg-gray-200 py-2 px-4 rounded-sm">
-                  <MdPersonOutline />
-                  <p>Account</p>
-                  <MdKeyboardArrowDown />
-                </div>
-              </li>
-              <li className="ml-5 text-bold uppercase hover:text-[#f68b1e]">
-                <div className="flex justify-around items-center gap-1 py-2 rounded-sm">
-                  <MdOutlineShoppingCart />
-                  <p>Cart</p>
-                </div>
-              </li>
+
+        <div className="w-auto flex justify-around items-center gap-10 ml-20">
+          <form className="flex justify-between items-center gap-3">
+            <input value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} type="text" placeholder="Search for products..." className="bg-gray-200 lg:w-[500px] xl:w-[600px] py-2 px-4 rounded-sm text-gray-500 font-normal border-none focus:border-1 border-orange-600" />
+            <button className="w-max h-full p-2 rounded-sm shadow-lg">Search</button>
+          </form>
+          
+          <ul className="hidden md:flex gap-5">
+            <li className="text-bold uppercase hover:text-[#f68b1e]">
+              <div className="flex justify-around items-center gap-1 bg-gray-200 py-2 px-4 rounded-sm">
+                <MdPersonOutline />
+                <p>Account</p>
+                <MdKeyboardArrowDown />
+              </div>
+            </li>
+            <li className="text-bold uppercase hover:text-[#f68b1e]">
+              <div className="flex justify-around items-center gap-1 py-2 rounded-sm">
+                <MdOutlineShoppingCart />
+                <p>Cart</p>
+              </div>
+            </li>
           </ul>
           <div onClick={handleNav} className="md:hidden">
             <AiOutlineMenu size={25} />

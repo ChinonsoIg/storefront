@@ -1,4 +1,4 @@
-import { ReactNode, FC } from "react";
+import { ReactNode, FC, useState } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
@@ -7,10 +7,13 @@ interface ILayout {
 }
 
 const Layout: FC<ILayout> = ({ children }) => {
+const [searchTerm, setSearchTerm] = useState("");
+
+console.log("serch: ", searchTerm);
 
   return (
     <div className="grid place-items-center">
-      <Navbar />
+      <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="max-w-[1240px] p-5">
         {children}
       </div>

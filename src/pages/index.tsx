@@ -63,8 +63,6 @@ export default function ({ products, categories }: IHome) {
 
   return (
     <Layout>
-      <input value={phrase} onChange={e => setPhrase(e.target.value)} type="text" placeholder="Search for products..." className="bg-gray-200 w-full py-2 px-4 rounded-md" />
-
       <div>
         {categories.categories.map(category => (
           <div key={category._id}>
