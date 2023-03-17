@@ -1,5 +1,6 @@
 import { ReactNode, FC } from "react";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 interface ILayout {
   children?: ReactNode;
@@ -8,8 +9,9 @@ interface ILayout {
 const Layout: FC<ILayout> = ({ children }) => {
 
   return (
-    <div>
-      <div className="p-5">
+    <div className="grid place-items-center">
+      <Navbar />
+      <div className="max-w-[1240px] p-5">
         {children}
       </div>
       <Footer />
