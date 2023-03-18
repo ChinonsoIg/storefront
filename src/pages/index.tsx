@@ -44,7 +44,7 @@ interface IHome {
 }
 
 
-export default function ({ products, categories }: IHome) {
+const Home = ({ products, categories }: IHome) => {
   const [phrase, setPhrase] = useState("");
 
   const findCategory = (id: string) => {
@@ -104,3 +104,6 @@ export const getServerSideProps = async () => {
   return { props: { products, categories } };
 }
 
+
+
+export default Home;
