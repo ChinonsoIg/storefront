@@ -67,7 +67,7 @@ const Home = ({ products, categories }: IHome) => {
         <aside className="fixed top-24 left-11 w-48 h-96 px-4 py-2 shadow-md rounded-md border bg-white">
           <ul className="py-2">
             {categories.categories.map((category) => (
-              <li className="capitalize py-1">
+              <li key={category._id} className="capitalize py-1">
                 {category.categoryName}
               </li>
             ))}
