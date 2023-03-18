@@ -63,24 +63,50 @@ const Home = ({ products, categories }: IHome) => {
 
   return (
     <Layout>
-      <div>
-        {categories.categories.map(category => (
-          <div key={category._id}>
-            {products.products.find(p => p.categoryId === category._id) && (
-              <div className="mb-5">
-                <h2 className="text-2xl py-5 capitalize">{category.categoryName}</h2>
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
-                >
-                  {products.products.filter(product => product.categoryId === category._id).map(productInfo => (
-                    <div key={productInfo._id}>
-                      <Product {...productInfo} />
-                    </div>
-                  ))}
+      <div className="relative flex items-start gap-2">
+        <aside className="fixed top-24 left-11 w-48 h-96 px-4 py-2 shadow-md rounded-md border bg-white">
+          <ul className="py-2">
+            {categories.categories.map((category) => (
+              <li className="capitalize py-1">
+                {category.categoryName}
+              </li>
+            ))}
+          </ul>
+        </aside>
+        {/* linear-gradient(to right bottom, #2f3441 50%, #212531 50%); */}
+        <main className="ml-56 mt-4">
+          <section
+          className="relative h-96 w-full bg-orange-500 rounded-md"
+          >
+            <p className="absolute top-28 left-40 z-10 font-extrabold text-white text-4xl">
+              ADVERT TABLE
+              ADVERT TABLE
+              ADVERT TABLE
+              ADVERT TABLE
+            </p>
+            <div className="absolute z-0 h-96 w-full advert-table bg-purple-700 rounded-md">
+            </div>
+          </section>
+          <section className="mt-5">
+          {categories.categories.map(category => (
+            <div key={category._id} className="">
+              {products.products.find(p => p.categoryId === category._id) && (
+                <div className="mb-5">
+                  <h2 className="text-2xl py-5 capitalize">{category.categoryName}</h2>
+                  <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
+                  >
+                    {products.products.filter(product => product.categoryId === category._id).map(productInfo => (
+                      <div key={productInfo._id}>
+                        <Product {...productInfo} />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+            </div>
+          ))}
+          </section>
+        </main>
       </div>
 
     </Layout>

@@ -36,3 +36,9 @@ html {
     @apply w-full rounded-xl uppercase bg-[#f68b1e] text-white
   }
 }
+
+@layer components {
+  .advert-table {
+  clip-path: polygon(90% 0, 100% 0, 100% 100%, 20% 100%);
+  }
+}
