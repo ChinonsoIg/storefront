@@ -59,25 +59,31 @@ const Navbar = ({ searchTerm, setSearchTerm }: ISearch) => {
           : "sticky top-0 w-full h-12 lg:h-20 z-[100] flex justify-center items-center text-[#fffefd]"
       }
     >
-      <div className="flex justify-between items-center w-full max-w-[1240px] h-full px-5 text-[#311a02] font-semibold">
-        <Link href="/" className={`${alex_brush.className} text-xl font-bold hover:text-[#f68b1e]`}
+      <div className="flex justify-between items-center gap-8 w-full max-w-[1240px] h-full px-5 text-[#311a02] font-semibold">
+        <Link href="/" className={`${alex_brush.className} text-xl font-bold hover:text-[#f68b1e] flex-none w-48`}
           aria-label="Go to home page">
           FemaleSuave
         </Link>
 
-        <div className="w-auto flex justify-around items-center gap-4 lg:gap-5 ml-20">
+        <div className="w-full max-[1184px]: flex justify-around items-center grow gap-4 lg:gap-5">
           <div className="block lg:hidden">
             <MdSearch size={20} color="#311a02" />
           </div>
 
-          <form className="hidden lg:flex justify-between items-center gap-2">
-            <input value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} type="text" placeholder="Search for products..." className="bg-gray-200 lg:w-[500px] xl:w-[600px] py-2 px-4 rounded-sm text-gray-500 font-normal border-none focus:border-1 border-orange-600" />
-            <button className="w-max h-full p-2 rounded-sm shadow-lg font-normal">Search</button>
+          <form className="hidden lg:flex justify-between items-center gap-2 w-full">
+            <input 
+              value={searchTerm} 
+              onChange={({ target }) => setSearchTerm(target.value)} 
+              type="text" 
+              placeholder="Search for products..." 
+              className="bg-gray-200 w-full py-2 px-4 rounded-md text-gray-500 font-normal border-none focus:border-none outline-none focus:outline-orange-600 outline-1"
+            />
+            <button className="w-max h-full p-2 rounded-md shadow-lg font-normal">Search</button>
           </form>
 
           <ul className="hidden md:flex gap-5 items-center">
             <li className="text-bold uppercase hover:text-[#f68b1e]">
-              <div className="hidden lg:flex justify-around items-center gap-1 bg-gray-200 py-2 px-4 rounded-sm">
+              <div className="hidden lg:flex justify-around items-center gap-1 bg-gray-200 py-2 px-4 rounded-md">
                 <MdPersonOutline />
                 <p>Account</p>
                 <MdKeyboardArrowDown />
@@ -87,7 +93,7 @@ const Navbar = ({ searchTerm, setSearchTerm }: ISearch) => {
               </div>
             </li>
             <li className="text-bold uppercase hover:text-[#f68b1e]">
-              <div className="hidden lg:flex justify-around items-center gap-1 py-2 rounded-sm">
+              <div className="hidden lg:flex justify-around items-center gap-1 py-2">
                 <MdOutlineShoppingCart />
                 <p>Cart</p>
               </div>

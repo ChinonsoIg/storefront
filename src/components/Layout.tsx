@@ -12,7 +12,7 @@ const [searchTerm, setSearchTerm] = useState("");
 // console.log("serch: ", searchTerm);
 
   return (
-    <div className="grid place-items-center">
+    <div className="grid place-items-center w-full">
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="w-full max-w-[1240px] px-5 pt-0">
         {children}
