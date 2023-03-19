@@ -91,7 +91,7 @@ const Home = ({ products, categories }: IHome) => {
             <div key={category._id} className="">
               {products.products.find(p => p.categoryId === category._id) && (
                 <div className="mb-8">
-                  <h2 className="text-md lg:text-2xl p-2 my-2 capitalize bg-[#FEE2CC]">{category.categoryName}</h2>
+                  <h2 className="text-md lg:text-xl p-2 my-2 capitalize bg-[color:var(--primary-color-light)]">{category.categoryName}</h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-5"
                   >
                     {products.products.filter(product => product.categoryId === category._id).map(productInfo => (
@@ -119,7 +119,6 @@ export const getServerSideProps = async () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const resProducts = await fetch(`${BASE_URL}/products/storefront`);
-  // console.log("products: ", resProducts);
 
   const resCategories = await fetch(`${BASE_URL}/categories`);
 
