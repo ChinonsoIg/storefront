@@ -63,8 +63,8 @@ const Home = ({ products, categories }: IHome) => {
 
   return (
     <Layout>
-      <div className="relative flex items-start gap-2 w-full">
-        <aside className="hidden lg:fixed top-24 left-11 w-48 h-96 px-4 py-2 shadow-md rounded-md border bg-white border-violet-500">
+      <div className="relative flex items-start gap-2">
+        <aside className="hidden lg:block absolute top-4 left-0 w-48 h-96 px-4 py-2 shadow-md rounded-md border bg-white">
           <ul className="py-2">
             {categories.categories.map((category) => (
               <li key={category._id} className="capitalize py-1">
@@ -73,25 +73,26 @@ const Home = ({ products, categories }: IHome) => {
             ))}
           </ul>
         </aside>
-
-        <main className="w-full m-0 lg:ml-56 mt-4">
-          <section className="relative h-40 md:h-56 lg:h-96 w-full bg-orange-500 rounded-md">
-            <p className="absolute top-10 lg:top-28 left-10 lg:left-40 z-10 font-extrabold text-white text-xl">
+        <main className="ml-0 lg:ml-56 mt-4">
+          <section
+          className="relative h-96 w-full bg-orange-500 rounded-md"
+          >
+            <p className="absolute top-10 lg:top-28 left-10 lg:left-40 z-10 font-extrabold text-white text-4xl">
+              ADVERT TABLE
+              ADVERT TABLE
+              ADVERT TABLE
               ADVERT TABLE
             </p>
-            <div className="absolute z-0 h-40 md:h-56 lg:h-96 w-full advert-table bg-purple-700 rounded-md">
+            <div className="absolute z-0 h-96 w-full advert-table bg-purple-700 rounded-md">
             </div>
           </section>
-
-          <section className="mt-5">
+          <section className="my-8">
           {categories.categories.map(category => (
             <div key={category._id} className="">
               {products.products.find(p => p.categoryId === category._id) && (
                 <div className="mb-8">
-                  <h2 className="text-md lg:text-2xl p-2 my-2 capitalize bg-[#FEE2CC]">
-                    {category.categoryName}
-                  </h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-5"
+                  <h2 className="text-md lg:text-2xl p-2 my-2 capitalize bg-[#FEE2CC]">{category.categoryName}</h2>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-5"
                   >
                     {products.products.filter(product => product.categoryId === category._id).map(productInfo => (
                       <div key={productInfo._id}>
