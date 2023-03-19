@@ -87,8 +87,10 @@ const Home = ({ products, categories }: IHome) => {
           {categories.categories.map(category => (
             <div key={category._id} className="">
               {products.products.find(p => p.categoryId === category._id) && (
-                <div className="mb-5">
-                  <h2 className="text-md lg:text-2xl py-5 capitalize">{category.categoryName}</h2>
+                <div className="mb-8">
+                  <h2 className="text-md lg:text-2xl p-2 my-2 capitalize bg-[#FEE2CC]">
+                    {category.categoryName}
+                  </h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-5"
                   >
                     {products.products.filter(product => product.categoryId === category._id).map(productInfo => (

@@ -30,33 +30,34 @@ const Product = ({
   }
 
   return (
-    <div className="w-full p-2 bg-white rounded-md shadow-xl lg:shadow-none hover:shadow-2xl">
-      <Link href={`/${productId}`} className="grid grid-cols-1 grid-rows-2">
-        <div className="bg-white flex align-center justify-center">
+    <div className="w-full p-2 bg-white rounded-md shadow-xl lg hover:shadow-2xl">
+      <Link href={`/${productId}`}>
+        <div className="bg-white flex align-center justify-center row-span-4">
           <Image
             loader={myLoader}
             src={image[0]}
-            height={150}
-            width={150}
+            height={200}
+            width={200}
             alt={name}
           />
         </div>
 
-        <div className="">
+        <div className="row-span-2">
           <div className="mt-2">
-            <p className="font-normal text-sm md:text-md leading-4">{name}</p>
+            <p className="font-normal text-sm md:text-md">{name}</p>
           </div>
-          <div className="flex gap-1 md:gap-3 text-sm md:text-md my-2">
-            <p className="font-medium">₦{addComma(price)}</p>
-            <p className="line-through text-[#aaa9a9] font-normal lg:font-medium">₦{addComma(price)}</p>
+          <div className="flex gap-3 text-md md:text-xl my-2">
+            <p>₦{addComma(price)}</p>
+            <p className="line-through text-[#aaa9a9]">₦{addComma(price)}</p>
           </div>
           <p className="text-sm mt-1 leading-4 text-gray-500">{"TODO: Rate"}</p>
         </div>
 
+
       </Link>
 
       <button
-        onClick={addProduct} className="py-1 text-sm rounded-md">Add to Cart</button>
+        onClick={addProduct} className="mt-4 py-1 px-3 rounded-md">Add to Cart</button>
     </div>
   );
 }
