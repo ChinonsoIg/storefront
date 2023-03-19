@@ -14,7 +14,7 @@ const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className="grid place-items-center">
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <div className="max-w-[1240px] px-5 pt-0">
+      <div className="w-full max-w-[1240px] px-5 pt-0">
         {children}
       </div>
       <Footer />
