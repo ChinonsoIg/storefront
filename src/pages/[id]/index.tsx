@@ -79,11 +79,10 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
 
   return (
     <Layout>
-      <section className="grid grid-cols-1 lg:grid-cols-4 grid-rows-2 lg:grid-rows-1 lg:gap-x-8 gap-y-4 mt-4 mb-0
+      <section className="grid grid-cols-1 lg:grid-cols-4 grid-rows-1 lg:grid-rows-1 lg:gap-x-8 gap-y-4 my-5
       ">
 
         <div className="col-span-3 grid grid-col-1 lg:grid-cols-5 gap-5 bg-[color:var(--white)] rounded-md px-5 py-3 shadow-md">
-
           <div className="col-span-2">
             <div className="w-full">
               <Image
@@ -94,9 +93,9 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
                 alt={product.product?.name}
               />
             </div>
-            <div>
+            <div className="my-5">
               {product.product.image.map((url, ind) => (
-                <div key={ind} className="w-20 mr-3 mb-3">
+                <div key={ind} className="w-16 mr-3 mb-3">
                   <Image
                     loader={myLoader}
                     src={url}
@@ -149,33 +148,42 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
               <p className="my-2 text-indigo-500">Report incorrect product information</p>
             </div>
           </div>
-
         </div>
 
-        <aside className="rounded-md bg-[color:var(--white)] px-5 py-3 shadow-md">
-          delivery details //h-min lg:h-auto
+        <aside className="rounded-md bg-[color:var(--white)] py-3 shadow-md h-max lg:h-auto">
+          <h5 className="border-b-2 border-gray-100 pb-1 px-5 mb-2">Delivery address </h5>
+          <p className="px-5">Lorem ipsum dolor sita</p>
         </aside>
       </section>
 
-      <section className="grid grid-cols-1 lg:grid-cols-4 grid-rows-2 lg:grid-rows-1 lg:gap-x-8 gap-y-4 mt-4">
+      <section className="grid 
+      grid-cols-1 
+      lg:grid-cols-4
+      grid-rows-1
+      lg:grid-rows-1 
+      lg:gap-x-8 gap-y-4 my-5
+      grid-content">
 
         <div className="col-span-3 grid grid-col-1 grid-row-3 gap-5">
-          <div className="rounded-md bg-[color:var(--white)] px-5 py-3 shadow-md">
-            <h5>Product description</h5>
-            <p>{product.product.description}</p>
+          <div className="rounded-md bg-[color:var(--white)] py-3 shadow-md">
+            <h5 className="border-b-2 border-gray-100 pb-1 px-5 mb-2">Product description</h5>
+            <p className="px-5">{product.product.description}</p>
           </div>
 
-          <div className="rounded-md bg-[color:var(--white)] px-5 py-3 shadow-md">
-            <h5>Specifications</h5>
-            <p>{"Product specification"}</p>
+          <div className="rounded-md bg-[color:var(--white)] py-3 shadow-md">
+            <h5 className="border-b-2 border-gray-100 pb-1 px-5 mb-2">Specifications</h5>
+            <p className="px-5">
+              {"Product specification"}
+              kjakj shs j dnk dihio jdoeiju oejowj jojoie eoiwo  ohjo hewjoe oe eu od eoje  ojuw h hehehuioe hi ejioe eoe whiefefjklha erh eha eoeaihe erih iieau whihi iikoei ehiheh ehihe oeue
+            </p>
           </div>
-          <div className="rounded-md bg-[color:var(--white)] px-5 py-3 shadow-md">
-            <h5>Customer feedback</h5>
-            <p>{"comments on ratings"}</p>
+          <div className="rounded-md bg-[color:var(--white)] py-3 shadow-md">
+            <h5 className="border-b-2 border-gray-100 pb-1 px-5 mb-2">Customer feedback</h5>
+            <p className="px-5">{"comments on ratings"}</p>
           </div>
         </div>
 
-        <aside className="hidden lg:grid auto-rows-max rounded-md bg-[color:var(--white)] px-0 py-0 shadow-md">
+        <aside className="hidden lg:grid h-min rounded-md bg-[color:var(--white)] px-0 py-0 shadow-md gap-0.5">
           <p className="flex items-center gap-3 p-5 rounded-t-lg bg-gray-200">
             <AiOutlineFileText size={22} />
             Product description
@@ -191,9 +199,9 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
         </aside>
       </section>
 
-      <section>
-        <h4>Similar products</h4>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-5"
+      <section className="my-10">
+        <h3>Similar products</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-5 mt-1"
         >
           {products.products.filter(singleProduct => singleProduct.categoryId === product.product.categoryId).map(productInfo => (
             <div key={productInfo._id}>
