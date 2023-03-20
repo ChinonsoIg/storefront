@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image, { ImageLoaderProps } from "next/image";
 import { GetServerSideProps } from "next";
@@ -69,8 +69,9 @@ const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
 }
 
 const SingleProduct = ({ product, categories, products }: IProps) => {
+  const [activeImage, setActiveImage] = useState(product.product?.image[0]);
   const router = useRouter();
-  console.log("pr : ", product.product);
+  // console.log("pr : ", product.product);
 
   const findCategory = (id: string) => {
     const found = categories.categories.find((category) => category._id == id)?.categoryName;
@@ -81,21 +82,23 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
     <Layout>
       <section className="grid grid-cols-1 lg:grid-cols-4 grid-rows-1 lg:grid-rows-1 lg:gap-x-8 gap-y-4 my-5
       ">
-
         <div className="col-span-3 grid grid-col-1 lg:grid-cols-5 gap-5 bg-[color:var(--white)] rounded-md px-5 py-3 shadow-md">
           <div className="col-span-2">
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center h-60">
               <Image
                 loader={myLoader}
-                src={product.product?.image[0]}
+                src={activeImage}
                 height={200}
                 width={200}
                 alt={product.product?.name}
               />
             </div>
-            <div className="my-5">
+            <div className="flex items-center my-5">
               {product.product.image.map((url, ind) => (
-                <div key={ind} className="w-16 mr-3 mb-3">
+                <div
+                  key={ind}
+                  className={`w-12 mr-3 mb-3 ${activeImage === url && "border-2 border-[color:var(--primary-color)]"}`}
+                  onClick={() => setActiveImage(url)} >
                   <Image
                     loader={myLoader}
                     src={url}
