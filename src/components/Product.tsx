@@ -31,7 +31,7 @@ const Product = ({
 
   return (
     <div className="w-full p-2 bg-white rounded-md shadow-lg lg:shadow-none hover:shadow-2xl">
-      <Link href={`/${productId}`} className="grid grid-cols-1 grid-rows-2">
+      <Link href={{ pathname: `/${productId}`, query: productId }} className="grid grid-cols-1 grid-rows-2">
         <div className="bg-white flex align-center justify-center">
           <Image
             loader={myLoader}

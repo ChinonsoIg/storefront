@@ -39,7 +39,7 @@ const Navbar = ({ searchTerm, setSearchTerm }: ISearch, { categories }: INavbar)
 
   const router = useRouter();
 
-  console.log("cate: ", categories)
+  // console.log("cate: ", categories)
 
   const handleNav = () => {
     setNav(!nav);
