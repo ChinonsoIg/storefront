@@ -84,7 +84,7 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
 
         <div className="col-span-3 grid grid-col-1 lg:grid-cols-5 gap-5 bg-[color:var(--white)] rounded-md px-5 py-3 shadow-md">
           <div className="col-span-2">
-            <div className="w-full">
+            <div className="flex items-center justify-center">
               <Image
                 loader={myLoader}
                 src={product.product?.image[0]}
@@ -137,7 +137,7 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
               <p className="text-md lg:text-2xl font-bold">
                 ₦{addComma(product.product.price)}</p>
               <p>{product.product.status}</p>
-              <p>+ shipping from "Seller address"</p>
+              <p>+ shipping from &quot;Seller address&quot;</p>
               <button className="w-full flex items-center justify-start px-3 py-3 rounded-md font-medium mt-5 shadow-lg">
                 <MdAddShoppingCart className="justify-self-start" size={22} />
                 <span className="justify-self-center m-auto">Add to cart</span>
@@ -210,6 +210,15 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
           ))}
         </div>
       </section>
+
+      <section className="my-10">
+        <h3>Recently viewed products</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-5 mt-1"
+        >
+          {/* TODO: Recently viewed*/}
+        </div>
+      </section>
+
     </Layout>
   )
 
