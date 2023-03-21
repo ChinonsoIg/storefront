@@ -8,6 +8,7 @@ import { FaTwitter } from "react-icons/fa";
 import { AiFillTwitterCircle, AiOutlineBars, AiOutlineFileText } from "react-icons/ai";
 import { BiCommentCheck } from "react-icons/bi";
 
+
 import Layout from "@/components/Layout";
 import { addComma } from "utils/functions";
 import Product from "@/components/Product";
@@ -86,8 +87,8 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
       <section className="grid grid-cols-1 lg:grid-cols-4 grid-rows-1 lg:grid-rows-1 lg:gap-x-8 gap-y-4 my-5
       ">
         <div className="col-span-3 grid grid-col-1 lg:grid-cols-5 gap-5 bg-[color:var(--white)] rounded-md px-5 py-3 shadow-md">
-          <div className="col-span-2">
-            <div className="flex items-center justify-center h-60">
+          <div className="col-span-3 lg:col-span-2">
+            <div className="flex items-center justify-center h-60 border-2">
               <Image
                 loader={myLoader}
                 src={activeImage}
@@ -96,6 +97,7 @@ const SingleProduct = ({ product, categories, products }: IProps) => {
                 alt={product.product?.name}
               />
             </div>
+
             <div className="flex items-center my-5">
               {product.product.image.map((url, ind) => (
                 <div
