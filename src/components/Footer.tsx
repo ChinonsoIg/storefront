@@ -1,28 +1,42 @@
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import { BsTwitter, BsFacebook, BsInstagram } from "react-icons/bs";
 
 export default function Footer() {
   const router = useRouter();
   const path = router.pathname;
 
   return (
-    <footer className="bg-white p-5 w-full flex border-t border-gray-400 justify-center space-x-12 text-gray-400 mt-auto">
-      <Link href={'/'}>
-        {/* <a className={(path === '/' ? 'text-emerald-500' : '')+" flex justify-center items-center flex-col"}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-          <span>Home</span>
-        </a> */}
-      </Link>
-      <Link href={'/checkout'}>kl
-        {/* <a className={(path === '/checkout' ? 'text-emerald-500' : '')+" flex justify-center items-center flex-col"}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-          </svg>
-          <span>Cart {"selectedProducts.length"}</span>
-        </a> */}
-      </Link>
+    <footer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 bg-[color:var(--bg-footer)] text-[color:var(--white)] p-5 w-full border-t border-gray-400 mt-auto">
+      <div className="col-span-1.5 lg:col-span-2 text-sm">
+        <Link href={'/'} className="font-bold text-xl">
+          FemaleSuave
+        </Link>
+        <p>hello@femalesuave.com</p>
+        <p>+234 803 0000 000</p>
+      </div>
+      <div className="col-span-1 text-sm">
+        <h6 className="text-md font-bold text-[(color:var(--white))] underline">About FemaleSuave</h6>
+        <p>Terms and Condition</p>
+        <p>Privacy Policy</p>
+        <p>Cookie Policy</p>
+      </div>
+      <div className="col-span-1 text-sm md:order-last lg:order-none">
+        <h6 className="text-md font-bold text-[(color:var(--white))] underline">Sell on FemaleSuave</h6>
+        <p className="font-semibold">
+          <Link href="" target="_blank">
+            Become a Seller
+          </Link>
+        </p>
+      </div>
+      <div className="col-span-1 text-sm">
+        <h6  className="text-md font-bold text-[(color:var(--white))] underline">We&apos;re on socials</h6>
+        <div className="flex gap-3 mt-2">
+          <BsTwitter size={18} />
+          <BsFacebook size={18} />
+          <BsInstagram size={18} />
+        </div>
+      </div>
     </footer>
   );
 
