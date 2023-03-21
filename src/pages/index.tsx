@@ -3,11 +3,11 @@ import Head from "next/head"
 import Image from "next/image"
 import { Inter } from "@next/font/google"
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import Product from "../components/Product";
 import Footer from "../components/Footer";
 import Layout from "../components/Layout";
-import Link from "next/link";
 
 
 interface ICategory {
@@ -32,7 +32,7 @@ interface IProducts {
   _id: string;
 }
 
-interface IHome {
+interface IProps {
   products: {
     products: Array<IProducts>;
     productsPerPage: number;
@@ -45,7 +45,7 @@ interface IHome {
 }
 
 
-const Home = ({ products, categories }: IHome) => {
+const Home = ({ products, categories }: IProps) => {
   const [phrase, setPhrase] = useState("");
 
   const findCategory = (id: string) => {
@@ -69,7 +69,7 @@ const Home = ({ products, categories }: IHome) => {
           <ul className="py-2">
             {categories.categories.map((category) => (
               <li key={category._id} className="capitalize py-1.5">
-                <Link href={{ pathname: `/categories`, query: category._id }}>
+                <Link href={{ pathname: `/categories`, query: {categoryId: category._id} }}>
                 {category.categoryName}
                 </Link>
               </li>

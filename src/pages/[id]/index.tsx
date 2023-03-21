@@ -64,7 +64,6 @@ interface IProps {
   };
 }
 
-type IProductDescriptionRef = boolean | null;
 
 const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
   return `${src}?w=${width}&q=${quality || 75}`
