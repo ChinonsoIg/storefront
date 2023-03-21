@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import Footer from "../components/Footer";
 import Layout from "../components/Layout";
+import Link from "next/link";
 
 
 interface ICategory {
@@ -64,15 +65,17 @@ const Home = ({ products, categories }: IHome) => {
   return (
     <Layout>
       <div className="relative flex items-start gap-2">
-        <aside className="hidden lg:block absolute top-4 left-0 w-48 h-96 px-4 py-2 shadow-md rounded-md border bg-white">
+        <nav className="hidden lg:block absolute top-4 left-0 w-48 h-96 px-4 py-2 shadow-md rounded-md border bg-white">
           <ul className="py-2">
             {categories.categories.map((category) => (
-              <li key={category._id} className="capitalize py-1">
+              <li key={category._id} className="capitalize py-1.5">
+                <Link href={{ pathname: `/categories`, query: category._id }}>
                 {category.categoryName}
+                </Link>
               </li>
             ))}
           </ul>
-        </aside>
+        </nav>
         <main className="ml-0 lg:ml-56 mt-4">
           <section
           className="relative h-96 w-full bg-orange-500 rounded-md"

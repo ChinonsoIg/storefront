@@ -25,6 +25,8 @@ const Product = ({
 }: IProduct) => {
   const router = useRouter();
 
+  // console.log("rout: ", router)
+
   function addProduct() {
     console.log("add product")
   }
