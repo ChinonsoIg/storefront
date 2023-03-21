@@ -55,11 +55,9 @@ const Navbar = ({ searchTerm, setSearchTerm }: ISearch, { categories }: INavbar)
 
   useEffect(() => {
     const handleShadow = () => {
-      if (window.scrollY >= 90) {
-        // console.log("true");
+      if (window.scrollY >= 80) {
         setShadow(true);
       } else {
-        // console.log("false");
         setShadow(false);
       }
     };
@@ -72,20 +70,22 @@ const Navbar = ({ searchTerm, setSearchTerm }: ISearch, { categories }: INavbar)
       style={{ backgroundColor: `${navBg}` }}
       className={
         shadow
-          ? "sticky top-0 w-full h-12 lg:h-20 shadow-xl z-[100] flex justify-center items-center"
-          : "sticky top-0 w-full h-12 lg:h-20 z-[100] flex justify-center items-center text-[#fffefd]"
+          ? "fixed top-0 w-full h-12 lg:h-20 shadow-xl z-[100] flex justify-center items-center"
+          : "sticky top-0 py-5 w-full h-12 lg:h-20 z-[100] flex justify-center items-center text-[#fffefd]"
       }
     >
       <div className="flex justify-between items-center gap-8 w-full max-w-[1240px] h-full px-5 text-[color:var(--primary-color-dark)] font-semibold">
+        <div className="flex gap-4 items-center">
         <div onClick={handleNav} className="lg:hidden">
           <MdMenu size={22} color="#311a02" />
         </div>
-        <div className="w-48 flex-none">
+        <div className="flex-none">
           <Link href="/" className={`${alex_brush.className} text-xl font-bold 
         hover:text-[color:var(--primary-color)]`}
             aria-label="Go to home page">
             FemaleSuave
           </Link>
+        </div>
         </div>
 
         <div className="w-full max-[1184px]: flex justify-end lg:justify-around items-center grow gap-4 lg:gap-5">
