@@ -20,7 +20,7 @@ html {
 
 @layer base {
   body {
-    @apply bg-[color:var(--bg-color)] tracking-wide
+    @apply bg-[color:var(--bg-color)] tracking-wide;
   }
 
   h1,

@@ -9,10 +9,9 @@ interface ILayout {
 const Layout: FC<ILayout> = ({ children }) => {
 const [searchTerm, setSearchTerm] = useState("");
 
-// console.log("serch: ", searchTerm);
 
   return (
-    <div className="grid place-items-center w-full">
+    <div className="flex flex-col items-center justify-start h-screen w-full">
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="w-full max-w-[1240px] px-5 pt-0">
         {children}

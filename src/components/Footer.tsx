@@ -1,14 +1,12 @@
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {useContext} from "react";
-// import {ProductsContext} from "./ProductsContext";
 
 export default function Footer() {
   const router = useRouter();
   const path = router.pathname;
-  // const {selectedProducts} = useContext(ProductsContext);
+
   return (
-    <footer className="sticky bottom-0 bg-white p-5 w-full flex border-t border-gray-200 justify-center space-x-12 text-gray-400">
+    <footer className="bg-white p-5 w-full flex border-t border-gray-400 justify-center space-x-12 text-gray-400 mt-auto">
       <Link href={'/'}>
         {/* <a className={(path === '/' ? 'text-emerald-500' : '')+" flex justify-center items-center flex-col"}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
