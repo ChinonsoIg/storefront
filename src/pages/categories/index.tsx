@@ -43,8 +43,7 @@ interface IProps {
 const Category = ({ products, categories }: IProps) => {
   const router = useRouter();
   const query = router.query.categoryId
-  console.log("r: ", query)
-
+  
   return (
     <Layout>
       <div className="relative flex items-start gap-2">
@@ -52,7 +51,7 @@ const Category = ({ products, categories }: IProps) => {
           <ul className="py-2">
             {categories.categories.map((category) => (
               <li key={category._id} className="capitalize py-1.5">
-                <Link href={{ pathname: `/categories`, query: category._id }}>
+                <Link href={{ pathname: `/categories`, query: {categoryId: category._id} }}>
                   {category.categoryName}
                 </Link>
               </li>

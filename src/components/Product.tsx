@@ -25,11 +25,11 @@ const Product = ({
 }: IProduct) => {
   const router = useRouter();
 
-  // console.log("rout: ", router)
 
   function addProduct() {
     console.log("add product")
   }
+
 
   return (
     <div className="w-full p-2 bg-white rounded-md shadow-lg lg:shadow-none hover:shadow-2xl">
