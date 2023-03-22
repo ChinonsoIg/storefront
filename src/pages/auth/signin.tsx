@@ -3,19 +3,27 @@ import { signIn, getProviders } from "next-auth/react";
 
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { AiFillFacebook, AiFillGithub, AiFillGoogleCircle } from "react-icons/ai";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useForm } from "react-hook-form";
+import { useForm, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../pages/api/auth/[...nextauth]";
 import Link from "next/link";
+import { FormInput } from "@/components/Form";
+import { GetServerSideProps, NextPage } from "next";
+import { type } from "os";
 // import { customToast } from "../../components/Toasts";
-// import { FormWithValidation } from "../../components/Form";
 
+type FormData = {
+  data : {
+    email: string;
+  password: string;
+  }
+}
 
 const schema = yup.object({
   email: yup.string().email().required(),
@@ -25,56 +33,57 @@ const schema = yup.object({
     .max(20, "Password length cannnot exceed 20 characters"),
 }).required();
 
-const SignIn = ({ providers }) => {
-  const [togglePassword, setTogglePassword] = useState(false);
+
+const SignIn: NextPage = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const router = useRouter();
 
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: FormData) => {
     setIsBtnLoading(true);
     console.log("data: ", data.email, data.password)
 
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-      callbackUrl: "/",
-    });
+    // const res = await signIn("credentials", {
+    //   email: data.email,
+    //   password: data.password,
+    //   redirect: false,
+    //   callbackUrl: "/",
+    // });
 
-    const { ok, error } = res;
+    // const { ok, error } = res;
 
-    if (ok) {
-      router.push("/");
-      setTimeout(() => {
-        setIsBtnLoading(false);
-      }, 4000);
+    // if (ok) {
+    //   router.push("/");
+    //   setTimeout(() => {
+    //     setIsBtnLoading(false);
+    //   }, 4000);
 
-    } else {
-      setIsBtnLoading(false);
+    // } else {
+    //   setIsBtnLoading(false);
 
-      switch (error) {
-        case "fetch failed":
-          console.log("fetch failed")
-          // customToast("error", "Sign in failed. Please make sure you're connected to the internet", "top-right");
-          break;
-        case "CredentialsSignin":
-          console.log("credential sinin")
-          // customToast("error", "Invalid email and/or password", "top-right");
-          break;
+    //   switch (error) {
+    //     case "fetch failed":
+    //       console.log("fetch failed")
+    //       // customToast("error", "Sign in failed. Please make sure you're connected to the internet", "top-right");
+    //       break;
+    //     case "CredentialsSignin":
+    //       console.log("credential sinin")
+    //       // customToast("error", "Invalid email and/or password", "top-right");
+    //       break;
 
-        default:
-          console.log("sign in failed")
-          // customToast("error", "Sign in attempt failed! Please try again later.", "top-right")
-          break;
-      }
-    }
+    //     default:
+    //       console.log("sign in failed")
+    //       // customToast("error", "Sign in attempt failed! Please try again later.", "top-right")
+    //       break;
+    //   }
+    // }
 
   }
 
   const handleTogglePassword = () => {
-    setTogglePassword(!togglePassword)
+    setIsPasswordVisible(!isPasswordVisible)
   }
 
 
@@ -88,18 +97,19 @@ const SignIn = ({ providers }) => {
       </Head>
 
       {/* <ToastContainer /> */}
-      <div className="">
-        <div className="{styles.auth_form_box}">
-          <div className="{styles.title_box}">
-            <header className="">Welcome!</header>
-            <p className="">Enter details to sign in.</p>
+      <div className="flex flex-col items-center w-full h-screen">
+        <div className="mt-10 max-w-md p-2 border-2">
+          <div className="">
+            <header className="text-lg font-bold text-[color:var(--primary-color)] text-center">FemaleSuave</header>
+            <p className="">Please, enter your email address and password to sign in.</p>
           </div>
+
           <form
             onSubmit={handleSubmit(onSubmit)}
             className=""
           >
             <div className="">
-              {/* <FormWithValidation
+              <FormInput
                 htmlFor="email"
                 title="Email"
                 type="email"
@@ -107,35 +117,31 @@ const SignIn = ({ providers }) => {
                 placeholder="Email"
                 register={register("email")}
                 errors={errors.email?.message}
-              // data_testid="signin-email"
-              /> */}
-              <input
-              type="text"
-              placeholder="Email"
-              className="my-2"
-              {...register("email")}
-              name="email"
+                data_testid=""
               />
-              <br />
-              <input
-              type="password"
-              placeholder="Email"
-              className="my-2"
-              {...register("password")}
-              name="password"
-              />
+            </div>
+
+            <div className="relative">
               <div className="">
-                {/* <FormWithValidation
+                <FormInput
                   htmlFor="password"
                   title="Password"
-                  type={togglePassword ? "text" : "password"}
+                  type={isPasswordVisible ? "text" : "password"}
                   name="password"
                   placeholder="Password"
                   register={register("password")}
                   errors={errors.password?.message}
-                // data_testid="signin-password"
-                /> */}
-                <span className="{styles.password_hide_show}" onClick={handleTogglePassword}>{togglePassword ? "hide" : "show"}</span>
+                  data_testid=""
+                />
+                <span
+                  className="absolute top-9 right-4 text-orange-500"
+                  onClick={handleTogglePassword}
+                >
+                  {isPasswordVisible ?
+                    <AiFillEyeInvisible size={18} /> :
+                    <AiFillEye size={18} />
+                  }
+                </span>
               </div>
               <div>
                 <Link href="/forgot-password">Forgot password?</Link>
@@ -157,22 +163,23 @@ const SignIn = ({ providers }) => {
 }
 
 
+// To implement providers
 
-export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res, authOptions);
+// export const getServerSideProps: GetServerSideProps<any> = async (context) => {
+//   const session = await getServerSession(context.req, context.res, authOptions);
 
-  // If sign in is successful, redirect to homepage
-  if (session) {
-    return {
-      redirect: { destination: "/", permanent: false },
-    };
-  }
+//   // If sign in is successful, redirect to homepage
+//   if (session) {
+//     return {
+//       redirect: { destination: "/", permanent: false },
+//     };
+//   }
 
-  const providers = await getProviders(context);
-  return {
-    props: { providers },
-  };
-}
+//   const providers = await getProviders(context);
+//   return {
+//     props: { providers },
+//   };
+// }
 
 
 export default SignIn;
