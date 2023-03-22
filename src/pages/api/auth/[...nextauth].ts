@@ -9,9 +9,6 @@ import FacebookProvider from "next-auth/providers/facebook";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 const authOptions: NextAuthOptions = {
-  // session: {
-  //   strategy: "jwt"
-  // },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -40,7 +37,6 @@ const authOptions: NextAuthOptions = {
 
         return {
           ...user,
-          // name: `${user.firstName} ${user.lastName}`,
           token
         }
 
@@ -49,9 +45,7 @@ const authOptions: NextAuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    jwt: true,
-    maxAge: 24 * 60 * 60,
-    // updateAge: 24 * 60 * 60,
+    strategy: "jwt"
   },
   callbacks: {
     async jwt({ token, account, user }) {
@@ -63,9 +57,10 @@ const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token, user }) {
+
+    async session({ session, token, user }: any) {
       if (token.accessToken) {
-        session.user = token.user
+        session.user = token.user;
         session.user.token = token.accessToken;
         return session;
       }

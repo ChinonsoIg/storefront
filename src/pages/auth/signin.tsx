@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { signIn, getProviders } from "next-auth/react";
-
+import { GetServerSideProps, NextPage } from "next";
+import { signIn, SignInResponse, getProviders } from "next-auth/react";
+import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -12,13 +13,11 @@ import * as yup from "yup";
 
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../pages/api/auth/[...nextauth]";
-import Link from "next/link";
-import { FormInput } from "@/components/Form";
-import { GetServerSideProps, NextPage } from "next";
-import { type } from "os";
-// import { customToast } from "../../components/Toasts";
 
-type FormValues = {
+import { FormInput } from "@/components/Form";
+import { customToast } from "@/components/Toast";
+
+interface FormValues {
   email: string;
   password: string;
 }
@@ -42,40 +41,40 @@ const SignIn: NextPage = () => {
   const onSubmit = async (data: FormValues) => {
     setIsBtnLoading(true);
 
-    // const res = await signIn("credentials", {
-    //   email: data.email,
-    //   password: data.password,
-    //   redirect: false,
-    //   callbackUrl: "/",
-    // });
+    const res = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+      callbackUrl: "/",
+    });
 
-    // const { ok, error } = res;
+    const { ok, error } = res as SignInResponse;
 
-    // if (ok) {
-    //   router.push("/");
-    //   setTimeout(() => {
-    //     setIsBtnLoading(false);
-    //   }, 4000);
+    if (ok) {
+      // router.push("/");
+      setTimeout(() => {
+        setIsBtnLoading(false);
+      }, 4000);
 
-    // } else {
-    //   setIsBtnLoading(false);
+    } else {
+      setIsBtnLoading(false);
 
-    //   switch (error) {
-    //     case "fetch failed":
-    //       console.log("fetch failed")
-    //       // customToast("error", "Sign in failed. Please make sure you're connected to the internet", "top-right");
-    //       break;
-    //     case "CredentialsSignin":
-    //       console.log("credential sinin")
-    //       // customToast("error", "Invalid email and/or password", "top-right");
-    //       break;
+      switch (error) {
+        case "fetch failed":
+          console.log("fetch failed")
+          customToast("error", "Sign in failed. Please make sure you're connected to the internet", "top-right");
+          break;
+        case "CredentialsSignin":
+          console.log("credential sinin")
+          customToast("error", "Invalid email and/or password", "top-right");
+          break;
 
-    //     default:
-    //       console.log("sign in failed")
-    //       // customToast("error", "Sign in attempt failed! Please try again later.", "top-right")
-    //       break;
-    //   }
-    // }
+        default:
+          console.log("sign in failed")
+          customToast("error", "Sign in attempt failed! Please try again later.", "top-right")
+          break;
+      }
+    }
 
   }
 
