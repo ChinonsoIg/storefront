@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useForm, Resolver } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -18,11 +18,9 @@ import { GetServerSideProps, NextPage } from "next";
 import { type } from "os";
 // import { customToast } from "../../components/Toasts";
 
-type FormData = {
-  data : {
-    email: string;
+type FormValues = {
+  email: string;
   password: string;
-  }
 }
 
 const schema = yup.object({
@@ -39,11 +37,10 @@ const SignIn: NextPage = () => {
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver: yupResolver(schema) });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: FormValues) => {
     setIsBtnLoading(true);
-    console.log("data: ", data.email, data.password)
 
     // const res = await signIn("credentials", {
     //   email: data.email,
@@ -86,6 +83,8 @@ const SignIn: NextPage = () => {
     setIsPasswordVisible(!isPasswordVisible)
   }
 
+  console.log("err : ", errors)
+  console.log("err typ : ", typeof(errors))
 
   return (
     <>

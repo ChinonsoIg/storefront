@@ -5,7 +5,7 @@ interface IFormInput {
   name: string;
   placeholder: string;
   register: {};
-  errors: string;
+  errors: undefined | string;
   data_testid: string;
 }
 
@@ -13,7 +13,7 @@ const FormInput = ({ htmlFor, title, type, name, placeholder, register, errors, 
 
 
   return (
-    <div className="mb-3">
+    <div className="mb-4">
       <label htmlFor={htmlFor} className="flex flex-col text-md">
         {title}
         <input
