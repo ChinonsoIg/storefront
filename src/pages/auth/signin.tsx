@@ -48,10 +48,12 @@ const SignIn: NextPage = () => {
       callbackUrl: "/",
     });
 
+console.log("res: ", res)
+
     const { ok, error } = res as SignInResponse;
 
     if (ok) {
-      // router.push("/");
+      router.push("/cart");
       setTimeout(() => {
         setIsBtnLoading(false);
       }, 4000);
@@ -82,8 +84,6 @@ const SignIn: NextPage = () => {
     setIsPasswordVisible(!isPasswordVisible)
   }
 
-  console.log("err : ", errors)
-  console.log("err typ : ", typeof(errors))
 
   return (
     <>
@@ -94,7 +94,7 @@ const SignIn: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <div className="flex flex-col items-center w-full h-screen">
         <div className="mt-10 max-w-md p-2 border-2">
           <div className="">

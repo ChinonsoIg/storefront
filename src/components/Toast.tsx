@@ -1,11 +1,6 @@
 import { toast, ToastPosition, TypeOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-interface IProps {
-  type: string;
-  message: string;
-  position: string;
-}
 
 const customToast = (type: TypeOptions, message: string, position: ToastPosition) => {
 

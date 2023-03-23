@@ -4,7 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import FacebookProvider from "next-auth/providers/facebook";
-// import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -17,26 +16,24 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password", placeholder: "******" }
       },
       async authorize(credentials, req) {
-        // const { email, password } = credentials as {
-        //   email: string;
-        //   password: string;
-        // };
 
-        const res = await fetch(`https://friendly-fish-cap.cyclic.app/api/v1/customer/auth/login`, {
+        const res = await fetch(`${BASE_URL}/customer/auth/login`, {
           method: 'POST',
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" }
         })
-        const data = await res.json();
-        const { user, token } = data;
 
-        // If you omit this, the login will go no matter the password. However, the user will be empty obj
-        if (!user) {
+        const data = await res.json();
+
+        const { customer, token } = data;
+
+        // If you omit this, the login will go no matter the password. However, the customer will be empty obj
+        if (!customer) {
           return null
         }
 
         return {
-          ...user,
+          ...customer,
           token
         }
 
@@ -45,7 +42,8 @@ const authOptions: NextAuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
+    maxAge: 24 * 60 * 60,
   },
   callbacks: {
     async jwt({ token, account, user }) {
@@ -53,20 +51,20 @@ const authOptions: NextAuthOptions = {
         token.accessToken = account.access_token;
       }
       if (user) {
-        token.user = user;
+        token.customer = user;
       }
       return token;
     },
 
-    async session({ session, token, user }: any) {
+    async session({ session, token, customer }: any) {
       if (token.accessToken) {
-        session.user = token.user;
-        session.user.token = token.accessToken;
+        session.customer = token.customer;
+        session.customer.token = token.accessToken;
         return session;
       }
 
-      session.user = token.user
-      // session.user.token = token.accessToken;
+      session.customer = token.customer
+      // session.customer.token = token.accessToken;
       return session;
     },
 

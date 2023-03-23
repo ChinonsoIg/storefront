@@ -7,7 +7,6 @@ import Link from "next/link";
 import "animate.css";
 
 import Product from "../components/Product";
-import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 
 import advert_trainer from "/public/images/advert_trainer.png";
