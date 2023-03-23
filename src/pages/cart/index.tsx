@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import Layout from "@/components/Layout";
 import { addComma } from "utils/functions";
 import { useRouter } from "next/router";
+import Loading from "@/components/Loading";
 
 const Cart = () => {
   const router = useRouter();
@@ -16,12 +17,11 @@ const Cart = () => {
       router.push("/auth/signin")
     },
   });
-  // console.log("stat: ", status)
-  // console.log("da: ", session)
 
+  if (status === "authenticated") {
   return (
     <Layout>
-      <div className="grid lg:grid-cols-5 xl:grid-cols-4 gap-5">
+      <div className="grid lg:grid-cols-5 xl:grid-cols-4 gap-5 mb-16">
         <section className="bg-white rounded-md shadow-md lg:col-span-3 xl:col-span-3">
           <h3 className="lg:text-xl font-semibold py-4 px-2 border-b-2 border-gray-100">Cart ({0})</h3>
           <div className="p-2">
@@ -41,6 +41,9 @@ const Cart = () => {
       </div>
     </Layout>
   )
+  }
+
+  return <Loading />
 }
 
 export default Cart;

@@ -14,6 +14,7 @@ html {
   --primary-color: #f68b1e;
   --primary-color-dark: #311a02;
   --primary-color-light: #FEE2CC;
+  --primary-color-70: #f7993b;
   --white: #fff;
   --black: #000;
 }
@@ -83,5 +84,48 @@ html {
     height: 50px;
     background: royalblue;
   }
+
+
+  /* For Loader */
+  .pulser {
+    width: 30px;
+    height: 30px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .pulser::after {
+    animation: pulse 1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.4);
+      opacity: 0.6;
+    }
+  }
+  
+  .pulser::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--primary-color-70);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  /* Decorative styles */
+  body {
+    display: grid;
+    place-items: center;
+  }
+  
 
 }
