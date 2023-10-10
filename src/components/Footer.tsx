@@ -7,9 +7,9 @@ export default function Footer() {
   const path = router.pathname;
 
   return (
-    <footer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 bg-[color:var(--bg-footer)] text-[color:var(--white)] p-5 w-full border-t border-gray-400 mt-auto">
+    <footer className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 bg-[color:var(--bg-footer)] text-[color:var(--white)] p-5 border-t border-gray-400 mt-auto">
       <div className="col-span-1.5 lg:col-span-2 text-sm">
-        <Link href={'/'} className="font-bold text-xl">
+        <Link href="/" className="font-bold text-xl">
           FemaleSuave
         </Link>
         <p>hello@femalesuave.com</p>
